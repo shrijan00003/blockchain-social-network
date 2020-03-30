@@ -1,7 +1,7 @@
 {
   "name": "ethereum-social-network",
   "version": "0.1.0",
-  "description": "An Ethereum Socical Nework",
+  "description": "An Ethereum Social Network",
   "license": "MIT",
   "author": "gregory@dappuniversity.com",
   "dependencies": {
@@ -17,7 +17,7 @@
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "truffle": "^5.1.19",
+    "truffle": "5.0.2",
     "web3": "^1.2.6"
   },
   "scripts": {
