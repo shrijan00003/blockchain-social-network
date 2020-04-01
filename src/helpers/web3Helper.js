@@ -1,6 +1,8 @@
 import Web3 from "web3";
 import SocialNetwork from "../abis/SocialNetwork.json";
 
+const GAS_LIMIT = 1000000;
+
 export const loadWeb3 = async () => {
   if (window.ethereum) {
     window.web3 = new Web3(window.ethereum);
@@ -70,15 +72,10 @@ export const createPost = async (content, from) => {
     return;
   }
 
-  console.log(
-    "_____________contract.methods__________",
-    contract.methods.createPost
-  );
-
   try {
     contract.methods
       .createPost(content)
-      .send({ from: `${from}` })
+      .send({ from, gas: GAS_LIMIT })
       .then(receipt => {
         console.log("_____________receipt__________", receipt);
         window.location.reload();
@@ -98,7 +95,7 @@ export const tipPost = async (id, from, tipAmount = "0.1") => {
   try {
     contract.methods
       .tipPost(id)
-      .send({ from, value: etherAmount, gas: 1000000 })
+      .send({ from, value: etherAmount, gas: GAS_LIMIT })
       .once("receipt", receipt => {
         console.log("_____________receipt__________", receipt);
       });
