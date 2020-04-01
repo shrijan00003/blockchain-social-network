@@ -3,6 +3,7 @@
         "Ethereum",
         "abis",
         "identicon",
+        "predeploy",
         "solc"
     ]
 }

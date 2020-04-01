@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "An Ethereum Social Network",
   "license": "MIT",
-  "author": "gregory@dappuniversity.com",
+  "author": "shrijantripathi.com.np",
+  "homepage": "https://shrijan00003.github.io/blockchain-social-network",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -22,6 +23,8 @@
     "web3": "^1.2.6"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,5 +38,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  }
 }
