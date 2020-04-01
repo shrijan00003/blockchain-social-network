@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7ee919f737ffeeea321e4a802f5131da",
+    "revision": "968b65156c221b180242950d8fe9a704",
     "url": "/blockchain-social-network/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/blockchain-social-network/static/css/2.e15a0812.chunk.css"
   },
   {
-    "revision": "718f4aa1e8332e517128",
+    "revision": "ada160705b2d58ab82db",
     "url": "/blockchain-social-network/static/css/main.819e4dd6.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/blockchain-social-network/static/js/2.c23436c5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "718f4aa1e8332e517128",
-    "url": "/blockchain-social-network/static/js/main.56bfa2ab.chunk.js"
+    "revision": "ada160705b2d58ab82db",
+    "url": "/blockchain-social-network/static/js/main.84d34ed0.chunk.js"
   },
   {
     "revision": "9c637963f4c4f16899c1",
