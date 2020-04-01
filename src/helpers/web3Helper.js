@@ -25,32 +25,84 @@ export const getNetworkId = async () => {
   return networkId;
 };
 
-export const getSocialNetworkData = async () => {
-  const networkData = SocialNetwork.networks[await getNetworkId()];
-  if (networkData) {
-    const socialNetwork = new window.web3.eth.Contract(
-      SocialNetwork.abi,
-      networkData.address
-    );
-    return socialNetwork;
-  } else {
-    window.alert("SocialNetwork contract not deployed to detected network.");
-    Promise.reject("Contract Not deployed");
+export const getSocialNetworkContract = async () => {
+  try {
+    const networkData = await SocialNetwork.networks[await getNetworkId()];
+    if (networkData) {
+      const socialNetworkContract = new window.web3.eth.Contract(
+        SocialNetwork.abi,
+        networkData.address
+      );
+      return socialNetworkContract;
+    }
+  } catch (error) {
+    return Promise.reject(error);
   }
 };
 
 export const getPosts = async () => {
-  const socialNetwork = await getSocialNetworkData();
-  const postCount = await socialNetwork.methods.postCount().call();
+  const socialNetworkContract = await getSocialNetworkContract();
+  if (!socialNetworkContract)
+    return {
+      data: null,
+      error: "Social Network is not released on current network"
+    };
+  const postCount = await socialNetworkContract.methods.postCount().call();
   let posts = [];
   if (postCount > 0) {
-    for (let index = 0; index < postCount; index++) {
-      const post = await socialNetwork.methods.posts(index).call();
+    for (let index = 1; index <= postCount; index++) {
+      const post = await socialNetworkContract.methods.posts(index).call();
       posts.push(post);
     }
   }
   return {
-    postCount,
-    posts
+    data: {
+      postCount,
+      posts
+    },
+    error: null
   };
+};
+
+export const createPost = async (content, from) => {
+  const contract = await getSocialNetworkContract();
+  if (!contract) {
+    return;
+  }
+
+  console.log(
+    "_____________contract.methods__________",
+    contract.methods.createPost
+  );
+
+  try {
+    contract.methods
+      .createPost(content)
+      .send({ from: `${from}` })
+      .then(receipt => {
+        console.log("_____________receipt__________", receipt);
+        window.location.reload();
+      })
+      .catch(err => console.log("_____________err__________", err));
+  } catch (error) {
+    console.log("_____________error in creating post__________", error);
+  }
+};
+
+export const tipPost = async (id, from, tipAmount = "0.1") => {
+  const etherAmount = window.web3.utils.toWei(tipAmount, "Ether");
+  const contract = await getSocialNetworkContract();
+  if (!contract) {
+    return;
+  }
+  try {
+    contract.methods
+      .tipPost(id)
+      .send({ from, value: etherAmount, gas: 1000000 })
+      .once("receipt", receipt => {
+        console.log("_____________receipt__________", receipt);
+      });
+  } catch (error) {
+    console.log("_____________error__________", error);
+  }
 };

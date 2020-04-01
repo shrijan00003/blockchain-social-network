@@ -1,7 +1,15 @@
 import "./App.scss";
 import Identicon from "identicon.js";
 import React, { useEffect, useState } from "react";
-import { loadWeb3, getAccount, getPosts } from "../helpers/web3Helper";
+import {
+  loadWeb3,
+  getAccount,
+  getPosts,
+  getSocialNetworkContract,
+  createPost,
+  tipPost
+} from "../helpers/web3Helper";
+import Main from "./Main";
 
 const initialState = {
   account: "",
@@ -15,23 +23,42 @@ function App() {
   }, []);
 
   const [state, setState] = useState(initialState);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const getAsyncAccount = async () => {
+    const getDataAsync = async () => {
       const account = await getAccount();
       setState(s => ({ ...s, account }));
 
-      const { postCount, posts } = await getPosts();
+      const socialNetworkContract = await getSocialNetworkContract();
+      if (socialNetworkContract) {
+        setState(s => ({ ...s, socialNetwork: socialNetworkContract }));
+      }
+
+      const { error, data } = await getPosts();
+      if (error) {
+        setError(error);
+        return;
+      }
+      const { posts, postCount } = data;
       if (postCount > 0) {
         setState(s => ({ ...s, posts, postCount }));
       }
     };
-    getAsyncAccount();
+    getDataAsync();
   }, []);
 
   const { account } = state;
 
-  console.log("_____________state__________", state);
+  const _createPost = content => {
+    createPost(content, state.account);
+  };
+  const _tipPost = (postId, tipAmount) => {
+    tipPost(postId, state.account, tipAmount);
+  };
+  if (error) {
+    console.log("_____________error__________", error);
+  }
   return (
     <div>
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow text-white">
@@ -58,6 +85,7 @@ function App() {
           </li>
         </ul>
       </nav>
+      <Main posts={state.posts} createPost={_createPost} tipPost={_tipPost} />
     </div>
   );
 }
