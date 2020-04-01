@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/blockchain-social-network/static/css/main.819e4dd6.chunk.css",
+    "main.js": "/blockchain-social-network/static/js/main.56bfa2ab.chunk.js",
+    "main.js.map": "/blockchain-social-network/static/js/main.56bfa2ab.chunk.js.map",
+    "runtime-main.js": "/blockchain-social-network/static/js/runtime-main.af802cc1.js",
+    "runtime-main.js.map": "/blockchain-social-network/static/js/runtime-main.af802cc1.js.map",
+    "static/css/2.e15a0812.chunk.css": "/blockchain-social-network/static/css/2.e15a0812.chunk.css",
+    "static/js/2.c23436c5.chunk.js": "/blockchain-social-network/static/js/2.c23436c5.chunk.js",
+    "static/js/2.c23436c5.chunk.js.map": "/blockchain-social-network/static/js/2.c23436c5.chunk.js.map",
+    "index.html": "/blockchain-social-network/index.html",
+    "precache-manifest.1226f1682af4ce9a1fad8a6d196828c1.js": "/blockchain-social-network/precache-manifest.1226f1682af4ce9a1fad8a6d196828c1.js",
+    "service-worker.js": "/blockchain-social-network/service-worker.js",
+    "static/css/2.e15a0812.chunk.css.map": "/blockchain-social-network/static/css/2.e15a0812.chunk.css.map",
+    "static/css/main.819e4dd6.chunk.css.map": "/blockchain-social-network/static/css/main.819e4dd6.chunk.css.map",
+    "static/js/2.c23436c5.chunk.js.LICENSE.txt": "/blockchain-social-network/static/js/2.c23436c5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.af802cc1.js",
+    "static/css/2.e15a0812.chunk.css",
+    "static/js/2.c23436c5.chunk.js",
+    "static/css/main.819e4dd6.chunk.css",
+    "static/js/main.56bfa2ab.chunk.js"
+  ]
+}
